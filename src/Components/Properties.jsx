@@ -8,7 +8,7 @@ const Properties = (props) => {
         <section className="properties">
             {allProperties.map((property) => {
                 return <Property property={property} onHandleDeleteProperty={onHandleDeleteProperty} key={property.id} />
-            })};
+            })}
         </section>
     );
 };
