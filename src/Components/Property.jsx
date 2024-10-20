@@ -1,22 +1,23 @@
 import React from 'react'
-import { allProperties } from '../data';
 
 const Property = (props) => {
+  const { property, onHandleDeleteProperty } = props;
+  console.log("property object in property component ", property)
+
   const { id, imageUrl, title, location, price } = property;
-  const {property} = props;
 
-  const handleDelete = (property) => {
-    alert('property is deleted')
+  const handleDelete = (id) => {
+    onHandleDeleteProperty(id)
   };
-
+  // array[index] object: dot notation : person.name person.id
   return (
-    <section key={allProperties.id} className='property'>
+    <section key={id} className='property'>
       <img src={imageUrl} alt={title} />
       <h3>Title: {title}</h3>
       <p>Location: {location}</p>
       <p>Price: {price}</p>
 
-      <button onClick={() => handleDelete(property.id)}>Delete</button>
+      <button onClick={() => handleDelete(id)}>Delete</button>
 
     </section>
   );

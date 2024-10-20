@@ -5,17 +5,20 @@ import AddProperty from "./Components/AddProperty";
 
 const App = () => {
 
-    const [newProperty, setProperty] = useState(allProperties);
+    const [propertyList, setProperty] = useState(allProperties);
 
     const handleAddProperty = (newProperty) => {
         setProperty((prevProperties) => {
-            return [...prevProperties, newProperty];
+            return [...prevProperties, newProperty]
         });
     };
+    
+    console.log("propertyList", propertyList);
 
     const handleDeleteProperty = (id) => {
-        console.log(id)
-    }
+       const filteredProperties = propertyList.filter((property) => property.id !== id);
+       setProperty(filteredProperties);
+    };
 
     return (
         <>
@@ -23,7 +26,7 @@ const App = () => {
             <AddProperty onHandleAddProperty ={handleAddProperty} /> 
             <br />
             {allProperties.length > 0 ? ( 
-                <Properties allProperties={allProperties} onHandleDeleteProperty ={handleDeleteProperty} />) 
+                <Properties allProperties={propertyList} onHandleDeleteProperty ={handleDeleteProperty} />) 
                 : (<h2 className="noProperty">no properties are available</h2>)}
 
         </>

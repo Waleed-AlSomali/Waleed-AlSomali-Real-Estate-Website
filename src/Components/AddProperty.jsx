@@ -50,7 +50,7 @@ const AddProperty = (props) => {
 
         <div>
         <label htmlFor="imageUrl">Image Url: </label>
-        <img src="https://via.placeholder.com/200x150" alt="title" id="imageUrl" value={imageUrl} onChange={handleImageUrlChange} required />
+        <input type="text" id="imageUrl" value={imageUrl} onChange={handleImageUrlChange} required />
         </div>
 
         <div>
