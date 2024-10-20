@@ -2,7 +2,13 @@ import React from 'react'
 import { allProperties } from '../data';
 
 const Property = (props) => {
-  const { imageUrl, title, location, price } = props.property;
+  const { id, imageUrl, title, location, price } = property;
+  const {property} = props;
+
+  const handleDelete = (property) => {
+    alert('property is deleted')
+  };
+
   return (
     <section key={allProperties.id} className='property'>
       <img src={imageUrl} alt={title} />
@@ -10,8 +16,10 @@ const Property = (props) => {
       <p>Location: {location}</p>
       <p>Price: {price}</p>
 
-    </section>
-  )
-}
+      <button onClick={() => handleDelete(property.id)}>Delete</button>
 
-export default Property
+    </section>
+  );
+};
+
+export default Property;

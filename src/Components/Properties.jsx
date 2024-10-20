@@ -7,8 +7,8 @@ const Properties = (props) => {
     return (
         <section className="properties">
             {allProperties.map((property) => {
-                return <Property property={property} />;
-            })}
+                return <Property property={property} key={property.id} />;
+            })};
         </section>
     );
 };
