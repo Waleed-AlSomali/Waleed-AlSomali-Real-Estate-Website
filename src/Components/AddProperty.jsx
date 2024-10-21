@@ -11,6 +11,8 @@ const AddProperty = (props) => {
 
   });
 
+  const [errors , setErrors] = useState({});
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     console.log("name ", name)
@@ -22,27 +24,49 @@ const AddProperty = (props) => {
 
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!property.title.trim() || property.title.length < 3)
+      newErrors.title = 'title is required and must be at least than 3 characters long';
+    if (property.imageUrl.length < 10)
+      newErrors.imageUrl = 'imageUrl should be at least 10 characters long';
+    if (property.location.length < 5)
+      newErrors.location = 'location should be at least 5 characters long';
+    if (!property.price || parseFloat(property.price) <= 0)
+      newErrors.price = 'Price must be a positive number';
+   
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newProperty = {
-      id: nanoid(),
-      title: property.title,
-      imageUrl: property.imageUrl,
-      location: property.location,
-      price: property.price,
-    };
+    
+    if(validateForm()){
 
-    props.onHandleAddProperty(newProperty);
-
-    // form reset
-    setProperty({
-
-      title: '',
-      imageUrl: '',
-      location: '',
-      price: 0,
-
-    });
+      const newProperty = {
+        id: nanoid(),
+        title: property.title,
+        imageUrl: property.imageUrl,
+        location: property.location,
+        price: property.price,
+      };
+  
+      props.onHandleAddProperty(newProperty);
+  
+      // form reset
+      setProperty({
+  
+        title: '',
+        imageUrl: '',
+        location: '',
+        price: 0,
+  
+      });
+    } else {
+      console.log(errors);
+    }
+    
   };
   return (
 
