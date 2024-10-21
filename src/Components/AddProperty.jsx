@@ -33,7 +33,7 @@ const AddProperty = (props) => {
     if (property.location.length < 5)
       newErrors.location = 'location should be at least 5 characters long';
     if (!property.price || parseFloat(property.price) <= 0)
-      newErrors.price = 'Price must be a positive number';
+      newErrors.price = 'price must be a positive number';
    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -77,21 +77,25 @@ const AddProperty = (props) => {
         <div>
           <label htmlFor="title">Title: </label>
           <input type="text" id="title" name='title' value={property.title} onChange={handleChange} required />
+          {errors.title && <span>{errors.title}</span>}
         </div>
 
         <div>
           <label htmlFor="imageUrl">Image Url: </label>
           <input type="text" id="imageUrl" name='imageUrl' value={property.imageUrl} onChange={handleChange} required />
+          {errors.imageUrl && <span>{errors.imageUrl}</span>}
         </div>
 
         <div>
           <label htmlFor="location">Location: </label>
           <input type="text" id="location" name='location' value={property.location} onChange={handleChange} required />
+          {errors.location && <span>{errors.location}</span>}
         </div>
 
         <div>
           <label htmlFor="price">Price: </label>
           <input type="text" id="price" name='price' value={property.price} onChange={handleChange} required />
+          {errors.price && <span>{errors.price}</span>}
         </div>
         <button type="submit">Add Property</button>
 
