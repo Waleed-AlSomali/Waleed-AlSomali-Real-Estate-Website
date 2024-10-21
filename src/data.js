@@ -1,6 +1,8 @@
+import { nanoid } from "nanoid";
+
 export const allProperties = [
     {
-        id: 1, 
+        id: nanoid(), 
         title: "Modern Apartment", 
         location: "New York, NY", 
         price: 1200, 
@@ -8,7 +10,7 @@ export const allProperties = [
     },
 
     {
-        id: 2,
+        id: nanoid(),
         title: "Cozy Cottage", 
         location: "San Francisco, CA", 
         price: 1800, 
@@ -16,7 +18,7 @@ export const allProperties = [
     }, 
 
     {
-        id: 3, 
+        id: nanoid(), 
         title: "Beachside Villa", 
         location: "Miami, FL", 
         price: 2500, 
@@ -24,7 +26,7 @@ export const allProperties = [
     }, 
 
     {
-        id: 4,
+        id: nanoid(),
         title: "Luxury Penthouse", 
         location: "Chicago, IL", 
         price: 5000, 

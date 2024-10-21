@@ -1,68 +1,76 @@
 import React, { useState } from 'react';
-
+import { nanoid } from 'nanoid';
 
 
 const AddProperty = (props) => {
-    const [title, setTitle] = useState ('');
-    const [imageUrl, setImageUrl] = useState ('');
-    const [location, setLocation] = useState ('');
-    const [price, setPrice] = useState ('0');
+  const [property, setProperty] = useState({
+    title: '',
+    imageUrl: '',
+    location: '',
+    price: 0,
 
-    const handleTitleChange = (event) => {
-        setTitle(event.target.value);
-    };
-    const handleImageUrlChange = (event) => {
-        setImageUrl(event.target.value);
-    };
-    const handleLocationChange = (event) => {
-        setLocation(event.target.value);
-    };
-    const handlePriceChange = (event) => {
-        setPrice(event.target.value);
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log("name ", name)
+    console.log("value  ", value)
+    setProperty({
+      ...property,
+      [name]: value
+    });
+
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newProperty = {
+      id: nanoid(),
+      title: property.title,
+      imageUrl: property.imageUrl,
+      location: property.location,
+      price: property.price,
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const newProperty = {
-            id: Date.now,
-            title: title,
-            imageUrl: imageUrl,
-            location: location,
-            price: price,
-        };
-        
-        props.onHandleAddProperty(newProperty);
+    props.onHandleAddProperty(newProperty);
 
-        // form reset
-        setTitle('');
-        setImageUrl('');
-        setLocation('');
-        setPrice('0');
-    };
+    // form reset
+    setProperty({
+
+      title: '',
+      imageUrl: '',
+      location: '',
+      price: 0,
+
+    });
+  };
   return (
+
     <div>
       <h2>Add Property</h2>
       <form onSubmit={handleSubmit}>
+
         <div>
-        <label htmlFor="title">Title: </label>
-        <input type="text" id="title" value={title} onChange={handleTitleChange} required />
+          <label htmlFor="title">Title: </label>
+          <input type="text" id="title" name='title' value={property.title} onChange={handleChange} required />
         </div>
 
         <div>
-        <label htmlFor="imageUrl">Image Url: </label>
-        <input type="text" id="imageUrl" value={imageUrl} onChange={handleImageUrlChange} required />
+          <label htmlFor="imageUrl">Image Url: </label>
+          <input type="text" id="imageUrl" name='imageUrl' value={property.imageUrl} onChange={handleChange} required />
         </div>
 
         <div>
-        <label htmlFor="location">Location: </label>
-        <input type="text" id="location" value={location} onChange={handleLocationChange} required />
+          <label htmlFor="location">Location: </label>
+          <input type="text" id="location" name='location' value={property.location} onChange={handleChange} required />
         </div>
 
         <div>
-        <label htmlFor="price">Price: </label>
-        <input type="text" id="price" value={price} onChange={handlePriceChange} required />
+          <label htmlFor="price">Price: </label>
+          <input type="text" id="price" name='price' value={property.price} onChange={handleChange} required />
         </div>
         <button type="submit">Add Property</button>
+
       </form>
     </div>
   );
