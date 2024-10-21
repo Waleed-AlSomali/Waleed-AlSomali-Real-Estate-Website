@@ -6,7 +6,7 @@ export const allProperties = [
         title: "Modern Apartment", 
         location: "New York, NY", 
         price: 1200, 
-        imageUrl: "https://via.placeholder.com/200x150", 
+        image: "https://via.placeholder.com/200x150", 
     },
 
     {
@@ -14,7 +14,7 @@ export const allProperties = [
         title: "Cozy Cottage", 
         location: "San Francisco, CA", 
         price: 1800, 
-        imageUrl: "https://via.placeholder.com/200x150", 
+        image: "https://via.placeholder.com/200x150", 
     }, 
 
     {
@@ -22,7 +22,7 @@ export const allProperties = [
         title: "Beachside Villa", 
         location: "Miami, FL", 
         price: 2500, 
-        imageUrl: "https://via.placeholder.com/200x150",
+        image: "https://via.placeholder.com/200x150",
     }, 
 
     {
@@ -30,6 +30,6 @@ export const allProperties = [
         title: "Luxury Penthouse", 
         location: "Chicago, IL", 
         price: 5000, 
-        imageUrl: "https://via.placeholder.com/200x150", 
+        image: "https://via.placeholder.com/200x150", 
     }, 
 ];

@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 const AddProperty = (props) => {
   const [property, setProperty] = useState({
     title: '',
-    imageUrl: '',
+    image: '',
     location: '',
     price: 0,
 
@@ -24,12 +24,21 @@ const AddProperty = (props) => {
 
   };
 
+  const handleImageChange = (event) => {
+    const imagefile = event.target.files[0];
+    setProperty({
+      ...property,
+      image: imagefile,
+    });
+
+  };
+
   const validateForm = () => {
     const newErrors = {};
     if (!property.title.trim() || property.title.length < 3)
       newErrors.title = 'title is required and must be at least than 3 characters long';
-    if (property.imageUrl.length < 10)
-      newErrors.imageUrl = 'imageUrl should be at least 10 characters long';
+    if (!property.image) 
+      newErrors.image = 'insert an image file';
     if (property.location.length < 5)
       newErrors.location = 'location should be at least 5 characters long';
     if (!property.price || parseFloat(property.price) <= 0)
@@ -47,7 +56,7 @@ const AddProperty = (props) => {
       const newProperty = {
         id: nanoid(),
         title: property.title,
-        imageUrl: property.imageUrl,
+        image: property.image,
         location: property.location,
         price: property.price,
       };
@@ -58,7 +67,7 @@ const AddProperty = (props) => {
       setProperty({
   
         title: '',
-        imageUrl: '',
+        image: '',
         location: '',
         price: 0,
   
@@ -81,9 +90,17 @@ const AddProperty = (props) => {
         </div>
 
         <div>
-          <label htmlFor="imageUrl">Image Url: </label>
-          <input type="text" id="imageUrl" name='imageUrl' value={property.imageUrl} onChange={handleChange} required />
-          {errors.imageUrl && <span>{errors.imageUrl}</span>}
+          <label htmlFor="image">Image: </label>
+          <input type="file" id="image" name='image' onChange={handleImageChange} accept='image/*' required />
+          {property.image && (
+          <div>
+            <img
+              src={URL.createObjectURL(property.image)}
+              alt="Selected Preview"
+              style={{ maxWidth: '40%', maxheight: 'auto', marginTop: '10px' }}
+            />
+          </div>
+        )}
         </div>
 
         <div>
