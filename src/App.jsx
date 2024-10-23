@@ -32,7 +32,7 @@ const App = () => {
         <>
             <h1>Real Estate Website</h1>
             <AddProperty onHandleAddProperty={handleAddProperty} />
-            {allProperties.length > 0 ? (
+            {propertyList.length > 0 ? (
                 <Properties allProperties={propertyList} onHandleDeleteProperty={handleDeleteProperty} />)
                 : (<h2 className="noProperty">no properties are available</h2>)}
 
