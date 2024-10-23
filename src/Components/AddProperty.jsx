@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
 
 
 const AddProperty = (props) => {
@@ -11,7 +12,7 @@ const AddProperty = (props) => {
 
   });
 
-  const [errors , setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,7 +29,7 @@ const AddProperty = (props) => {
     const imagefile = event.target.files[0];
     setProperty({
       ...property,
-      image: imagefile,
+      [event.target.name]: imagefile,
     });
 
   };
@@ -37,46 +38,51 @@ const AddProperty = (props) => {
     const newErrors = {};
     if (!property.title.trim() || property.title.length < 3)
       newErrors.title = 'title is required and must be at least than 3 characters long';
-    if (!property.image) 
+    if (!property.image)
       newErrors.image = 'insert an image file';
     if (property.location.length < 5)
       newErrors.location = 'location should be at least 5 characters long';
     if (!property.price || parseFloat(property.price) <= 0)
       newErrors.price = 'price must be a positive number';
-   
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    if(validateForm()){
+  const handleSubmit = async (event) => {
+
+
+    if (validateForm()) {
+      event.preventDefault();
+      const imageURL = await uploadImageToCloudinary(property.image)
+      console.log(imageURL);
 
       const newProperty = {
         id: nanoid(),
         title: property.title,
-        image: property.image,
+        image: imageURL,
         location: property.location,
         price: property.price,
       };
-  
+
       props.onHandleAddProperty(newProperty);
-  
+
       // form reset
       setProperty({
-  
+
         title: '',
         image: '',
         location: '',
         price: 0,
-  
+
       });
     } else {
       console.log(errors);
     }
-    
+
   };
+
+
   return (
 
     <div>
@@ -93,14 +99,14 @@ const AddProperty = (props) => {
           <label htmlFor="image">Image: </label>
           <input type="file" id="image" name='image' onChange={handleImageChange} accept='image/*' required />
           {property.image && (
-          <div>
-            <img
-              src={URL.createObjectURL(property.image)}
-              alt="Selected Preview"
-              style={{ maxWidth: '40%', maxheight: 'auto', marginTop: '10px' }}
-            />
-          </div>
-        )}
+            <div>
+              <img
+                src={URL.createObjectURL(property.image)}
+                alt="Selected Preview"
+                style={{ maxWidth: '40%', maxheight: 'auto', marginTop: '10px' }}
+              />
+            </div>
+          )}
         </div>
 
         <div>
