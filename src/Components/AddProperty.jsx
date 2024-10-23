@@ -1,6 +1,7 @@
+import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
+
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
 
 
 const AddProperty = (props) => {
@@ -50,10 +51,10 @@ const AddProperty = (props) => {
   };
 
   const handleSubmit = async (event) => {
-
-
+    event.preventDefault();
+    
     if (validateForm()) {
-      event.preventDefault();
+     
       const imageURL = await uploadImageToCloudinary(property.image)
       console.log(imageURL);
 

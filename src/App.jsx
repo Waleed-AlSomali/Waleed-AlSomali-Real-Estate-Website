@@ -32,9 +32,6 @@ const App = () => {
         <>
             <h1>Real Estate Website</h1>
             <AddProperty onHandleAddProperty={handleAddProperty} />
-            <br />
-            {/* <UpdateProperty onHandleUpdateProperty ={handleUpdateProperty} />
-            <br /> */}
             {allProperties.length > 0 ? (
                 <Properties allProperties={propertyList} onHandleDeleteProperty={handleDeleteProperty} />)
                 : (<h2 className="noProperty">no properties are available</h2>)}
@@ -44,3 +41,5 @@ const App = () => {
 };
 
 export default App;
+ {/* <UpdateProperty onHandleUpdateProperty ={handleUpdateProperty} />
+            <br /> */}
