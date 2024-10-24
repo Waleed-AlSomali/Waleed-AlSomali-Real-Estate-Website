@@ -1,7 +1,9 @@
-import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
-
 import React, { useState } from 'react';
+
 import { nanoid } from 'nanoid';
+
+import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
+import styles from '../styles/AddProperty.module.css'
 
 
 const AddProperty = (props) => {
@@ -23,7 +25,6 @@ const AddProperty = (props) => {
       ...property,
       [name]: value
     });
-
   };
 
   const handleImageChange = (event) => {
@@ -80,13 +81,11 @@ const AddProperty = (props) => {
     } else {
       console.log(errors);
     }
-
   };
 
 
   return (
-
-    <div>
+    <section className={styles.addProperty}>
       <h2>Add Property</h2>
       <form onSubmit={handleSubmit}>
 
@@ -121,10 +120,10 @@ const AddProperty = (props) => {
           <input type="text" id="price" name='price' value={property.price} onChange={handleChange} required />
           {errors.price && <span>{errors.price}</span>}
         </div>
-        <button type="submit">Add Property</button>
+        <button className={styles.addBtn} type="submit">Add Property</button>
 
       </form>
-    </div>
+    </section>
   );
 };
 

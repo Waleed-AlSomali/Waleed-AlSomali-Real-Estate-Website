@@ -1,7 +1,9 @@
 import React from 'react'
 
+import styles from '../styles/Property.module.css'
+
 const Property = (props) => {
-  const { property, onHandleDeleteProperty,  } = props;
+  const { property, onHandleDeleteProperty } = props;
   console.log("property object in property component ", property)
 
   const { id, image, title, location, price } = property;
@@ -10,20 +12,20 @@ const Property = (props) => {
     onHandleDeleteProperty(id)
   };
 
-  // const handleUpdate = (property) => {
-  //   onHandleUpdateProperty(property);
-  // }
+  //  const handleUpdate = (property) => {
+  //    onHandleUpdateProperty(property);
+  //  }
 
   // array[index] object: dot notation : person.name person.id
   return (
-    <section key={id} className='property'>
+    <section key={id} className={styles.property}>
       <img src={image} alt={title} />
       <h3>Title: {title}</h3>
       <p>Location: {location}</p>
       <p>Price: {price}</p>
 
-      <button onClick={() => handleDelete(id)}>Delete</button>
-      {/* <button onClick={() => handleUpdate(property)}>Edit</button> */}
+      <button className={styles.deletebtn} onClick={() => handleDelete(id)}>Delete</button>
+     
 
     </section>
   );

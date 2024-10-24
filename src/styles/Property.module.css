@@ -4,6 +4,10 @@ img{
    object-fit: contain;
 }
 
+.property{
+    background-color: beige;
+    padding: 2rem;
+}
 
 @media screen and (max-width: 760px) {
     .properties{

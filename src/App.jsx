@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+
 import Properties from "./Components/Properties";
 import { allProperties } from "./data";
 import AddProperty from "./Components/AddProperty";
-
 // import UpdateProperty from "./Components/UpdateProperty";
 
 const App = () => {
 
     const [propertyList, setProperty] = useState(allProperties);
-    //const [updatePropertyList, setUpdateProperty] = useState();
+    // const [updatePropertyList, setUpdateProperty] = useState();
 
     const handleAddProperty = (newProperty) => {
         setProperty((prevProperties) => {
@@ -24,14 +24,17 @@ const App = () => {
     };
 
     // const handleUpdateProperty = (property) => {
-    //     setUpdatedProperty(property)
-    //  };
+    //     setUpdateProperty(property);
+    // };
+    
 
 
     return (
         <>
             <h1>Real Estate Website</h1>
             <AddProperty onHandleAddProperty={handleAddProperty} />
+            <br />
+            
             {propertyList.length > 0 ? (
                 <Properties allProperties={propertyList} onHandleDeleteProperty={handleDeleteProperty} />)
                 : (<h2 className="noProperty">no properties are available</h2>)}
@@ -41,5 +44,4 @@ const App = () => {
 };
 
 export default App;
- {/* <UpdateProperty onHandleUpdateProperty ={handleUpdateProperty} />
-            <br /> */}
+ 
