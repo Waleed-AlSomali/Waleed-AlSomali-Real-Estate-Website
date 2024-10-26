@@ -1,47 +1,45 @@
-import React, { useState } from "react";
+import React from 'react';
+import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 
-import Properties from "./Components/Properties";
-import { allProperties } from "./data";
-import AddProperty from "./Components/AddProperty";
-// import UpdateProperty from "./Components/UpdateProperty";
+import AddPropertyPage from "./pages/AddPropertyPage";
+import EditPropertyPage from "./pages/EditPropertyPage";
+import Login from "./pages/Login";
+import ErrorPage from "./pages/ErrorPage";
+import Navbar from "./layout/Navbar";
+import Home from "./pages/Home";
 
 const App = () => {
 
-    const [propertyList, setProperty] = useState(allProperties);
-    // const [updatePropertyList, setUpdateProperty] = useState();
-
-    const handleAddProperty = (newProperty) => {
-        setProperty((prevProperties) => {
-            return [...prevProperties, newProperty]
-        });
-    };
-
-    console.log("propertyList", propertyList);
-
-    const handleDeleteProperty = (id) => {
-        const filteredProperties = propertyList.filter((property) => property.id !== id);
-        setProperty(filteredProperties);
-    };
-
-    // const handleUpdateProperty = (property) => {
-    //     setUpdateProperty(property);
-    // };
-    
-
-
-    return (
-        <>
-            <h1>Real Estate Website</h1>
-            <AddProperty onHandleAddProperty={handleAddProperty} />
-            <br />
+    const router = createBrowserRouter([
+        {
+          path: '/',
+          element: <Navbar />,
+          errorElement: <ErrorPage />,
+          children: [
+            {
+                path: '/',
+                element: <Home />
+            },
+            {
+                path: '/addpropertypage',
+                element: <AddPropertyPage />
+            },
+            {
+                path: '/editPropertyPage',
+                element: <EditPropertyPage />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
             
-            {propertyList.length > 0 ? (
-                <Properties allProperties={propertyList} onHandleDeleteProperty={handleDeleteProperty} />)
-                : (<h2 className="noProperty">no properties are available</h2>)}
+          ],
+        },      
+      ]);
 
-        </>
-    );
+        return (
+            <RouterProvider router={router} />
+          )
 };
 
 export default App;
- 

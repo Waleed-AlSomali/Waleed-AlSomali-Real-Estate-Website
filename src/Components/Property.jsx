@@ -12,10 +12,7 @@ const Property = (props) => {
     onHandleDeleteProperty(id)
   };
 
-  //  const handleUpdate = (property) => {
-  //    onHandleUpdateProperty(property);
-  //  }
-
+   
   // array[index] object: dot notation : person.name person.id
   return (
     <section key={id} className={styles.property}>
