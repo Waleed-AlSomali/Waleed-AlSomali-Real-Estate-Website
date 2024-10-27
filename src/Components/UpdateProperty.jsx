@@ -1,130 +1,130 @@
-// import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
+import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
 
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
-// const UpdateProperty = () => {
+const UpdateProperty = () => {
 
-//     const [property, setProperty] = useState({
-//         title: '',
-//         image: '',
-//         location: '',
-//         price: 0,
+    const [updatedProperty, setUpdatedProperty] = useState({
+        title: '',
+        image: '',
+        location: '',
+        price: 0,
     
-//     });
+    });
     
-//     const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({});
     
-//     const handleChange = (event) => {
-//         const { name, value } = event.target;
-//         console.log("name ", name)
-//         console.log("value  ", value)
-//         setProperty({
-//         ...property,
-//         [name]: value
-//         });
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        console.log("name ", name)
+        console.log("value  ", value)
+        setUpdatedProperty({
+        ...property,
+        [name]: value
+        });
     
-//     };
+    };
     
-//     const handleImageChange = (event) => {
-//         const imagefile = event.target.files[0];
-//         setProperty({
-//         ...property,
-//         [event.target.name]: imagefile,
-//         });
+    const handleImageChange = (event) => {
+        const imagefile = event.target.files[0];
+        setProperty({
+        ...property,
+        [event.target.name]: imagefile,
+        });
     
-//     };
+    };
     
-//     const validateForm = () => {
-//         const newErrors = {};
-//         if (!property.title.trim() || property.title.length < 3)
-//         newErrors.title = 'title is required and must be at least than 3 characters long';
-//         if (!property.image)
-//         newErrors.image = 'insert an image file';
-//         if (property.location.length < 5)
-//         newErrors.location = 'location should be at least 5 characters long';
-//         if (!property.price || parseFloat(property.price) <= 0)
-//         newErrors.price = 'price must be a positive number';
+    const validateForm = () => {
+        const newErrors = {};
+        if (!property.title.trim() || property.title.length < 3)
+        newErrors.title = 'title is required and must be at least than 3 characters long';
+        if (!property.image)
+        newErrors.image = 'insert an image file';
+        if (property.location.length < 5)
+        newErrors.location = 'location should be at least 5 characters long';
+        if (!property.price || parseFloat(property.price) <= 0)
+        newErrors.price = 'price must be a positive number';
     
-//         setErrors(newErrors);
-//         return Object.keys(newErrors).length === 0;
-//     };
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         
-//         if (validateForm()) {
+        if (validateForm()) {
         
-//         const imageURL = await uploadImageToCloudinary(property.image)
-//         console.log(imageURL);
+        const imageURL = await uploadImageToCloudinary(property.image)
+        console.log(imageURL);
     
-//         const newProperty = {
-//             id: nanoid(),
-//             title: property.title,
-//             image: imageURL,
-//             location: property.location,
-//             price: property.price,
-//         };
+        const updatedProperty = {
+            id: nanoid(),
+            title: property.title,
+            image: imageURL,
+            location: property.location,
+            price: property.price,
+        };
     
-//         props.onHandleAddProperty(newProperty);
+        props.onHandleUpdateProperty(updatedProperty);
     
-//         // form reset
-//         setProperty({
+        // form reset
+        setUpdatedProperty({
     
-//             title: '',
-//             image: '',
-//             location: '',
-//             price: 0,
+            title: '',
+            image: '',
+            location: '',
+            price: 0,
     
-//         });
-//         } else {
-//         console.log(errors);
-//         }
+        });
+        } else {
+        console.log(errors);
+        }
     
-//     };
+    };
     
     
-//     return (
+    return (
     
-//         <div>
-//         <h2>Add Property</h2>
-//         <form onSubmit={handleSubmit}>
+        <div>
+        <h2>Add Property</h2>
+        <form onSubmit={handleSubmit}>
     
-//             <div>
-//             <label htmlFor="title">Title: </label>
-//             <input type="text" id="title" name='title' value={property.title} onChange={handleChange} required />
-//             {errors.title && <span>{errors.title}</span>}
-//             </div>
+            <div>
+            <label htmlFor="title">Title: </label>
+            <input type="text" id="title" name='title' value={property.title} onChange={handleChange} required />
+            {errors.title && <span>{errors.title}</span>}
+            </div>
     
-//             <div>
-//             <label htmlFor="image">Image: </label>
-//             <input type="file" id="image" name='image' onChange={handleImageChange} accept='image/*' required />
-//             {property.image && (
-//                 <div>
-//                 <img
-//                     src={URL.createObjectURL(property.image)}
-//                     alt="Selected Preview"
-//                     style={{ maxWidth: '40%', maxheight: 'auto', marginTop: '10px' }}
-//                 />
-//                 </div>
-//             )}
-//             </div>
+            <div>
+            <label htmlFor="image">Image: </label>
+            <input type="file" id="image" name='image' onChange={handleImageChange} accept='image/*' required />
+            {property.image && (
+                <div>
+                <img
+                    src={URL.createObjectURL(property.image)}
+                    alt="Selected Preview"
+                    style={{ maxWidth: '40%', maxheight: 'auto', marginTop: '10px' }}
+                />
+                </div>
+            )}
+            </div>
     
-//             <div>
-//             <label htmlFor="location">Location: </label>
-//             <input type="text" id="location" name='location' value={property.location} onChange={handleChange} required />
-//             {errors.location && <span>{errors.location}</span>}
-//             </div>
+            <div>
+            <label htmlFor="location">Location: </label>
+            <input type="text" id="location" name='location' value={property.location} onChange={handleChange} required />
+            {errors.location && <span>{errors.location}</span>}
+            </div>
     
-//             <div>
-//             <label htmlFor="price">Price: </label>
-//             <input type="text" id="price" name='price' value={property.price} onChange={handleChange} required />
-//             {errors.price && <span>{errors.price}</span>}
-//             </div>
-//             <button type="submit">Add Property</button>
+            <div>
+            <label htmlFor="price">Price: </label>
+            <input type="text" id="price" name='price' value={property.price} onChange={handleChange} required />
+            {errors.price && <span>{errors.price}</span>}
+            </div>
+            <button type="submit">Add Property</button>
     
-//         </form>
-//         </div>
-//     );
-// }    
+        </form>
+        </div>
+    );
+}    
 
-// export default UpdateProperty;
+export default UpdateProperty;

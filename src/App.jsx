@@ -1,12 +1,15 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 
-import AddPropertyPage from "./pages/AddPropertyPage";
-import EditPropertyPage from "./pages/EditPropertyPage";
 import Login from "./pages/Login";
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
+import Profile from './pages/Profile';
+import AddProperty from './Components/AddProperty';
+import UpdateProperty from './Components/UpdateProperty';
+import PropertyDetails from './pages/PropertyDetails';
+
 
 const App = () => {
 
@@ -21,18 +24,25 @@ const App = () => {
                 element: <Home />
             },
             {
-                path: '/addpropertypage',
-                element: <AddPropertyPage />
+                path:  '/add-property',
+                element: <AddProperty />
             },
             {
-                path: '/editPropertyPage',
-                element: <EditPropertyPage />
+                path: '/edit-property',
+                element: <UpdateProperty />
             },
             {
                 path: '/login',
                 element: <Login />
             },
-            
+            {
+              path: '/profile',
+              element: <Profile />
+            },
+            {
+              path: '/properties/:id',
+              element: <PropertyDetails />
+            },
           ],
         },      
       ]);

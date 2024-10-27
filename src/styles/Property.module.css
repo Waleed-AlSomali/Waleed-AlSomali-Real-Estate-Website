@@ -7,6 +7,11 @@ img{
 .property{
     background-color: beige;
     padding: 2rem;
+    
+}
+
+.deleteBtn{
+    margin-left: 10%;
 }
 
 @media screen and (max-width: 760px) {

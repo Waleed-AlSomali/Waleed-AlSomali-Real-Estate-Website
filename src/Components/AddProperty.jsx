@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-
 import { nanoid } from 'nanoid';
 
 import { uploadImageToCloudinary } from '../Utilities/Uploadimage';
 import styles from '../styles/AddProperty.module.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProperty = (props) => {
+
+  const navigate = useNavigate();
+    navigate('/');
+    
   const [property, setProperty] = useState({
     title: '',
     image: '',
@@ -68,6 +72,8 @@ const AddProperty = (props) => {
       };
 
       props.onHandleAddProperty(newProperty);
+
+      
 
       // form reset
       setProperty({
