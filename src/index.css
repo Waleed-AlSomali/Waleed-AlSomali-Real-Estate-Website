@@ -4,6 +4,16 @@ img{
    object-fit: contain;
 }
 
+ul{
+    display: flex;
+    gap: 2rem;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(163, 224, 206, 0.555);
+    padding: 1rem;
+    font-size: 1.3rem;
+}
 
 @media screen and (max-width: 760px) {
     .properties{

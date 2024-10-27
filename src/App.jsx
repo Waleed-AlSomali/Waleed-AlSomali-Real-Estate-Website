@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 
 import Login from "./pages/Login";
@@ -7,49 +7,73 @@ import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import Profile from './pages/Profile';
 import AddProperty from './Components/AddProperty';
-import UpdateProperty from './Components/UpdateProperty';
 import PropertyDetails from './pages/PropertyDetails';
-
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
+import UserProperties from './components/UserProperties';
+import ProtectedRoutes from './routes/ProtectedRoutes';
 
 const App = () => {
 
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Navbar />,
+      errorElement: <ErrorPage />,
+      children: [
         {
           path: '/',
-          element: <Navbar />,
-          errorElement: <ErrorPage />,
+          element: <Home />
+        },
+        {
+          path: '/add-property',
+          element: <AddProperty />
+        },
+        // {
+        //     path: '/edit-property',
+        //     element: <UpdateProperty />
+        // },
+        {
+          path: '/login',
+          element: <Login />
+        },
+        {
+          path: '/logout',
+          element: <Home />
+        },
+        {
+          path: '/profile',
+          element: <Profile />
+        },
+        {
+          path: '/properties/:id',
+          element: <PropertyDetails />
+        },
+        {
+          path: '/dashboard',
+          element: <ProtectedRoutes />,
           children: [
             {
-                path: '/',
-                element: <Home />
+              path: 'users',
+              element: <UserDashboard />
             },
             {
-                path:  '/add-property',
-                element: <AddProperty />
-            },
-            {
-                path: '/edit-property',
-                element: <UpdateProperty />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-              path: '/profile',
-              element: <Profile />
-            },
-            {
-              path: '/properties/:id',
-              element: <PropertyDetails />
+              path: 'properties',
+              element: <UserProperties />
             },
           ],
-        },      
-      ]);
+        },
+        {
+          path: '/dashboard/admins',
+          element: <AdminDashboard />
+        },
+      ],
+    },
+  ]);
 
-        return (
-            <RouterProvider router={router} />
-          )
+  return (
+    <RouterProvider router={router} />
+  )
 };
 
 export default App;

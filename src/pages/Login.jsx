@@ -25,10 +25,12 @@ const Login = () => {
       email: 'waleedy93@hotmail.com' ,
       password: 'supbruv',
       address: 'Makkah_Jeddah',
+      isAdmin: true,
     };
     
     if (user.email === userData.email && user.password === userData.password) {
       console.log('user successfully signed in');
+      localStorage.setItem('login', JSON.stringify({ userData , isLoggedin: true}))
       navigate('/profile', {state: userData});
     } else {
       console.log('failed to sign in');

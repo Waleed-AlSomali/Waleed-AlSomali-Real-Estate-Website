@@ -2,8 +2,11 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
 const Navbar = () => {
+    const handleLogOut = () => {
+        localStorage.setItem('login', JSON.stringify({ isLoggedin: false}))
+    }
   return (
-    <> 
+    <header>
     <nav>
         <ul>
             <li>
@@ -13,15 +16,20 @@ const Navbar = () => {
                 <Link to="/add-property">AddProperty</Link>
             </li>
             <li>
-                <Link to="/edit-Property">UpdateProperty</Link>
+                <Link to="/login">Log in</Link>
             </li>
             <li>
-                <Link to="/login">Login</Link>
+                <Link to="/logout" onClick={handleLogOut}>Log out</Link>
             </li>
         </ul>
+        <Outlet />
     </nav>
-    <Outlet />
-    </>
+    </header>
+   
+    
+    
+    
+   
   )
 }
 

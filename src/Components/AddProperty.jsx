@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 const AddProperty = (props) => {
 
   const navigate = useNavigate();
-    navigate('/');
-    
+
+
   const [property, setProperty] = useState({
     title: '',
     image: '',
@@ -57,9 +57,9 @@ const AddProperty = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (validateForm()) {
-     
+
       const imageURL = await uploadImageToCloudinary(property.image)
       console.log(imageURL);
 
@@ -70,11 +70,12 @@ const AddProperty = (props) => {
         location: property.location,
         price: property.price,
       };
-
+      
       props.onHandleAddProperty(newProperty);
 
-      
+      // localStorage.setItem('add-property', JSON.stringify(newProperty))
 
+      navigate('/');
       // form reset
       setProperty({
 
