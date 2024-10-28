@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createBrowserRouter, RouterProvider, } from 'react-router-dom';
 
-import Login from "./pages/Login";
-import ErrorPage from "./pages/ErrorPage";
-import Navbar from "./layout/Navbar";
+import Login from './pages/Login';
+import ErrorPage from './pages/ErrorPage';
+import Navbar from './layout/NavBar'
 import Home from "./pages/Home";
 import Profile from './pages/Profile';
 import AddProperty from './Components/AddProperty';
